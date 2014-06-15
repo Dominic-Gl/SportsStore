@@ -1,5 +1,5 @@
 using System.Web.Mvc;
-using Ninject.Web.Mvc;
+using SportsStore.WebUI.Infrastructure;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(SportsStore.WebUI.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(SportsStore.WebUI.App_Start.NinjectWebCommon), "Stop")]
