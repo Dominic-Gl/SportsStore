@@ -35,7 +35,57 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.1.1309.1617\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\packages\Ninject.Web.Common.3.0.0.7\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\packages\Ninject.MVC3.3.0.0.6\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.5\lib\net40\WebActivator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -50,8 +100,22 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SportsStore.Domain\SportsStore.Domain.csproj">
+      <Project>{32017457-6325-431f-8eb0-45c3c3741c8d}</Project>
+      <Name>SportsStore.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SportsStore.WebUI\SportsStore.WebUI.csproj">
+      <Project>{01a29c7b-8fd5-45c5-ac59-a2445c1c06cc}</Project>
+      <Name>SportsStore.WebUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
