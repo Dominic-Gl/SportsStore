@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -67,7 +68,16 @@ namespace SportsStore.Domain.Concrete
                     mailMessage.BodyEncoding = Encoding.ASCII;
                 }
 
-                smtpClient.Send(mailMessage);
+                try
+                {
+                    smtpClient.Send(mailMessage);
+                }
+                catch (Exception exception)
+                {
+                    Debug.WriteLine("Couldn't send mail: " + exception.Message);
+                    
+                }
+                
             }
             
         }
@@ -82,7 +92,7 @@ namespace SportsStore.Domain.Concrete
         public string Password= "password";
         public string Servername= "smtp.example.com";
         public int Serverport= 587;
-        public bool WriteAsFile= true;
+        public bool WriteAsFile= false;
         public string FileLocation= @"c:\sports_store_emails";
     }
 }
