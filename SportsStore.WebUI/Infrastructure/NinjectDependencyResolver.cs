@@ -46,6 +46,10 @@ namespace SportsStore.WebUI.Infrastructure
             //kernel.Rebind<IProductRepository>().ToConstant(mock.Object);
 
             kernel.Bind<IProductRepository>().To<EFProductRepository>();
+
+            var emailSettings = new EmailSettings();
+
+            kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("settings", emailSettings);
         }
     }
 }
