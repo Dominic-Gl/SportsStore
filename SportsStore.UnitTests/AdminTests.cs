@@ -108,5 +108,25 @@ namespace SportsStore.UnitTests
             // assert -  check the method result type
             Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
+
+        [TestMethod]
+        public void Can_Delete_Valid_Products()
+        {
+            var prod = new Product() {ProductID = 2, Name = "Test"};
+
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(repo => repo.Products).Returns(new Product[]
+            {
+                new Product() {ProductID = 1, Name = "p1"},
+                prod,
+                new Product() {ProductID = 2, Name = "p2"}
+            });
+
+            AdminController target = new AdminController(mock.Object);
+            target.Delete(prod.ProductID);
+
+            //assert - ensure that the repository delete method was called with the correct product
+            mock.Verify(repo => repo.DelteProduct(prod.ProductID));
+        }
     }
 }

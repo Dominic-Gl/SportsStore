@@ -11,7 +11,7 @@
     </div>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit","Admin"))
 {
     <div class="panel-body">
         @Html.HiddenFor(product => product.ProductID)
