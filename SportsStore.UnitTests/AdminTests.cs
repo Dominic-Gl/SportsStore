@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SportsStore.Domain.Abstract;
@@ -73,6 +74,39 @@ namespace SportsStore.UnitTests
             Product result = target.Edit(4).ViewData.Model as Product;
 
             Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void Can_Save_Valid_Changes()
+        {
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+
+            AdminController target = new AdminController(mock.Object);
+            Product product= new Product(){Name = "Test"};
+
+            ActionResult result = target.Edit(product);
+
+            // assert -  check that the repository was called
+            mock.Verify(repo => repo.SaveProduct(product));
+            // assert -  check the method result type
+            Assert.IsNotInstanceOfType(result, typeof(ViewResult));
+        }
+
+        [TestMethod]
+        public void Cannot_Save_Invalid_Changes()
+        {
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+
+            AdminController target = new AdminController(mock.Object);
+            Product product = new Product() { Name = "Test" };
+            target.ModelState.AddModelError("error", "error");
+
+            ActionResult result = target.Edit(product);
+
+            // assert - check that the repository was not called
+            mock.Verify(repo => repo.SaveProduct(It.IsAny<Product>()), Times.Never);
+            // assert -  check the method result type
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
     }
 }
