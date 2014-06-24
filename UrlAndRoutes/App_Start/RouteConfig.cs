@@ -11,18 +11,15 @@ namespace UrlAndRoutes
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            //routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            //routes.MapRoute(
-            //    name: "Default",
-            //    url: "{controller}/{action}/{id}",
-            //    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            //);
+            //Static routes examples
+            //routes.MapRoute("", "Shop/OldAction", new {controller = "Home", action="Index"});
+            //routes.MapRoute("", "Shop/{action}", new {controller = "Home"});
+            //routes.MapRoute("", "X{controller}/{action}");
+            //routes.MapRoute("MyRoute", "{controller}/{action}", new {controller = "Home", action = "Index"});
+            //routes.MapRoute("", "Public/{controller}/{action}", new {controller = "Home", action = "Index"});
 
-            //Route myRoute = new Route("{controller}/{action}", new MvcRouteHandler());
-            //routes.Add("MyRoute", myRoute);
-
-            routes.MapRoute("MyRoute", "{controller}/{action}");
+            //Custom segment variables
         }
     }
 }
