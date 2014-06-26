@@ -14,36 +14,32 @@ namespace UrlAndRoutes
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-
-            //Static routes examples
-            //routes.MapRoute("", "Shop/OldAction", new {controller = "Home", action="Index"});
-            //routes.MapRoute("", "Shop/{action}", new {controller = "Home"});
-            //routes.MapRoute("", "X{controller}/{action}");
-            //routes.MapRoute("MyRoute", "{controller}/{action}", new {controller = "Home", action = "Index"});
-            //routes.MapRoute("", "Public/{controller}/{action}", new {controller = "Home", action = "Index"});
-
-            
-            //routes.MapRoute("", "Home/{action}/{id}/{*catchall}", new { controller = "Home", action = "Index", id = UrlParameter.Optional }, new[] { "UrlAndRoutes.AddtionalControllers" });
-            //routes.MapRoute("", "{controller}/{action}/{id}/{*catchall}", new { controller = "Home", action = "Index", id = UrlParameter.Optional }, new[] { "UrlAndRoutes.Controllers" });
-
+            routes.RouteExistingFiles = true;
             routes.MapMvcAttributeRoutes();
 
-            routes.MapRoute("", "{controller}/{action}/{id}",
-                new {controller = "Home", action = "Index", id = UrlParameter.Optional},
-                new[] {"UrlAndRoutes.Controllers"});
+            //routes.MapRoute("Diskfile", "Content/StaticContent.html", new {controller = "Customer", action = "List"});
+            routes.IgnoreRoute("Content/{filename}.html");
 
-            //routes.MapRoute("ChromeRoute", "{*catchall}", new {controller = "Home", action = "Index"},
-            //    new {customConstrain = new UserAgentConstrain("Chrome")}, new[] {"UrlAndRoutes.AddtionalControllers"});
+            routes.Add(new Route("sayhello", new CustomRouteHandler()));
 
-            //routes.MapRoute("", "{controller}/{action}/{id}/{*catchall}", 
-            //    new { controller = "Home", action = "Index", id = UrlParameter.Optional }, 
-            //    new{controller ="^H.*", action="^Index$|^About$", httpMethod= new HttpMethodConstraint("GET"), 
-            //        id=new CompoundRouteConstraint(new IRouteConstraint[]
-            //        {
-            //            new AlphaRouteConstraint(), 
-            //            new MinLengthRouteConstraint(6), 
-            //        })},
-            //    new[] { "UrlAndRoutes.Controllers" });
+            routes.Add(new LegacyRoute(
+                "~/article/windows_31_Overview.html",
+                "~/old/.net_10_class_library"
+                ));
+
+
+
+            routes.MapRoute("myroute", "{controller}/{action}",null,new []
+            {
+                "UrlAndRoutes.Controllers"
+            });
+            routes.MapRoute("myotherroute", "App/{action}",
+                new { controller = "Home" }, new[]
+            {
+                "UrlAndRoutes.Controllers"
+            });
+
+          
         }
     }
 }

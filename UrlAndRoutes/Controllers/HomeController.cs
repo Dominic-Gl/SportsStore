@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace UrlAndRoutes.Controllers
 {
@@ -25,6 +26,11 @@ namespace UrlAndRoutes.Controllers
             ViewBag.CustomVariable = id;
 
             return View();
+        }
+
+        public RedirectToRouteResult MyAction()
+        {
+            return RedirectToRoute(new {controller = "Home", action = "Index", id = "id"});
         }
 	}
 }

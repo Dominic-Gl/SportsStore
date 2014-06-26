@@ -12,6 +12,25 @@
     <body>
         <div>The controller is: @ViewBag.Controller</div>
         <div>The action is: @ViewBag.Action</div>
+        <div>
+            @Html.ActionLink("This is an outgoing Url", "CustomVariable")
+        </div>
+        <div>
+            @Html.ActionLink("this targets  another controller", "index", "Customer")
+        </div>
+        <div>
+            @Html.ActionLink("This is an outgoing Url ´with custom segment", "CustomVariable", "Home", new{id ="Hello"}, null)
+        </div>
+        <div>
+            @Html.ActionLink("This is an outgoing Url with html attr", "Index", "Home", null, new{id="myanchor", @class = "alert-link"})
+        </div>
+        <div>
+            @Html.ActionLink("This is an outgoing FQ Url with html attr", "Index", "Home", "https", "myserver.domain.de", "myFragementName", new { id = "myid" }, new { id = "myanchor", @class = "alert-link" })
+        </div>
+        <div>
+            this is a url:
+            @Html.ActionLink("click me", "GetLagecyUrl", "Legacy", new { legacyUrl = "~/article/windows_31_Overview.html" }, null)
+        </div>
     </body>
     
 </html>
